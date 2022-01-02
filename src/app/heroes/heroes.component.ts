@@ -26,4 +26,17 @@ export class HeroesComponent implements OnInit {
   } // este enfoque asincrónico funcionará cuando HeroService solicite héroes al servidor. 
   // (la version actual) espera a que el observable emita la serie de heroes
   // (la version anterior)tiene una forma sincronica lo que significa que se ejecuta despues de otro codigo.
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.heroService.addHero({ name } as Hero)
+      .subscribe(hero => { this.heroes.push(hero); })
+  }
+
+  delete(hero: Hero): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deleteHero(hero.id).subscribe();
+  }
+
 }

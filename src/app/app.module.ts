@@ -10,18 +10,25 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+
 @NgModule({
-  declarations: [
+  declarations: [ //solo se escribe componentes
     AppComponent,
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
     DashboardComponent
   ],
-  imports: [
+  imports: [ // solo se escribe modulos
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
   ],
   providers: [ // no need to place any providers due to the `providedIn` flag...
   ],
