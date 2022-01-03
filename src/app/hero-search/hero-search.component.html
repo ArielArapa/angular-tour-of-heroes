@@ -1,0 +1,16 @@
+<div id="search-component">
+    <label for="search-box">Hero Search</label>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    <!-- a medida que el usuario escribe en el cuadro de busqueda, un enlace de evento de entrada 
+llama al metodo search() del componente con el nuevo valor del cuadro de busqueda. -->
+
+    <ul class="search-result">
+        <li *ngFor="let hero of heroes$ | async">
+            <!-- El $ es una convención que indica heroes$ es un Observable, no una matriz. -->
+            <!-- async. Esto identifica AsyncPipe de Angular y se suscribe a un Observable automáticamente para que no tenga que hacerlo en la clase de componente. -->
+            <a routerLink="/detail/{{hero.id}}">
+                {{hero.name}}
+            </a>
+        </li>
+    </ul>
+</div>
